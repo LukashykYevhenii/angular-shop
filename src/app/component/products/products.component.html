@@ -1,0 +1,245 @@
+<!--<div class="card-top container-fluid">-->
+<!--  <div class="container d-flex">-->
+
+<!--    <div class="item">-->
+<!--      <a (click)="filter('')">-->
+<!--        <img src="https://rukminim1.flixcart.com/flap/128/128/image/f15c02bfeb02d15d.png?q=100" alt="">-->
+<!--        <h6>All products</h6>-->
+<!--      </a>-->
+<!--    </div>-->
+
+<!--    <div class="item">-->
+<!--      <a (click)="filter('electronics')">-->
+<!--        <img src="https://rukminim1.flixcart.com/flap/128/128/image/69c6589653afdb9a.png?q=100" alt="">-->
+<!--        <h6>Electronics</h6>-->
+<!--      </a>-->
+<!--    </div>-->
+
+<!--    <div class="item">-->
+<!--      <a (click)="filter('fashion')">-->
+<!--        <img src="https://rukminim1.flixcart.com/flap/128/128/image/82b3ca5fb2301045.png?q=100" alt="">-->
+<!--        <h6>Fashion</h6>-->
+<!--      </a>-->
+<!--    </div>-->
+
+<!--    <div class="item">-->
+<!--      <a (click)="filter('jewelery')">-->
+<!--        <img style="width: 62px; margin-top: 5px;"-->
+<!--             src="https://rukminim1.flixcart.com/image/580/696/kkh6zrk0/jewellery-set/o/w/z/gt-ns-862-matushri-art-original-imafzt9teacakjyn.jpeg?q=50"-->
+<!--             alt="">-->
+<!--        <h6>Jewllery</h6>-->
+<!--      </a>-->
+
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--<div class="container">-->
+<!--  <div class="row">-->
+<!--    <ng-container *ngFor="let item of filterCategory | filter:searchKey:'title'">-->
+<!--      <div class="card col-md-3">-->
+<!--        <img src="{{item.image}}" alt="">-->
+<!--        <h5 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">{{item.title}}</h5>-->
+<!--        <p style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">{{item.description}}</p>-->
+<!--        <p><strong>Price:</strong> ${{item.price}}</p>-->
+<!--        <button class="btn btn-primary" (click)=addtocart(item)>Add to cart</button>-->
+<!--      </div>-->
+<!--    </ng-container>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="bg-light py-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 mb-0"><a routerLink="/">Home</a> <span class="mx-2 mb-0">/</span> <strong
+        class="text-black">Shop</strong></div>
+    </div>
+  </div>
+</div>
+
+<div class="site-section">
+  <div class="container">
+
+    <div class="row mb-5">
+      <div class="col-md-9 order-2">
+
+        <div class="row">
+          <div class="col-md-12 mb-5">
+            <div class="float-md-left mb-4"><h2 class="text-black h5">Shop All</h2></div>
+            <div class="d-flex">
+              <div class="dropdown mr-1 ml-md-auto">
+                <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuOffset"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Latest
+                </button>
+
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+                  <a class="dropdown-item cursor" (click)="filter('')">All</a>
+                  <a class="dropdown-item cursor" (click)="filter('men\'s clothing')">Men</a>
+                  <a class="dropdown-item cursor" (click)="filter('women\'s clothing')">Women</a>
+                  <a class="dropdown-item cursor" (click)="filter('electronics')">Electronics</a>
+                  <a class="dropdown-item cursor" (click)="filter('jewelery')">Jewelery</a>
+                </div>
+              </div>
+              <div class="btn-group">
+                <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuReference"
+                        data-toggle="dropdown">Reference
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+                  <a class="dropdown-item cursor" (click)="sortByRelevance()">Relevance</a>
+                  <a class="dropdown-item cursor" (click)="sortByNameAsc()">Name, A to Z</a>
+                  <a class="dropdown-item cursor" (click)="sortByNameDesc()">Name, Z to A</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item cursor" (click)="sortByPriceAsc()">Price, low to high</a>
+                  <a class="dropdown-item cursor" (click)="sortByPriceDesc()">Price, high to low</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!--                <div class="container">-->
+        <!--                  <div class="row">-->
+        <!--                    <ng-container *ngFor="let item of filterCategory | filter:searchKey:'title'">-->
+        <!--                      <div class="card col-md-3">-->
+        <!--                        <img src="{{item.image}}" alt="">-->
+        <!--                        <h5-->
+        <!--                          style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">{{item.title}}</h5>-->
+        <!--                        <p-->
+        <!--                          style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">{{item.description}}</p>-->
+        <!--                        <p><strong>Price:</strong> ${{item.price}}</p>-->
+        <!--                        <button class="btn btn-primary" (click)=addtocart(item)>Add to cart</button>-->
+        <!--                      </div>-->
+        <!--                    </ng-container>-->
+        <!--                  </div>-->
+        <!--                </div>-->
+
+        <div class="row mb-5">
+
+          <ng-container *ngFor="let item of filterCategory | filter:searchKey:'title'">
+            <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+              <div class="block-4 text-center border">
+                <figure class="block-4-image">
+                  <a routerLink="/single" [queryParams]="{id: item.id}"><img src="{{item.image}}"
+                                                                             alt="Image placeholder" class="img-fluid"></a>
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;"><a
+                    routerLink="/single" [queryParams]="{id: item.id}">{{item.title}}</a></h3>
+                  <p class="mb-0"
+                     style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">{{item.description}}</p>
+                  <p class="text-primary font-weight-bold">${{item.price}}</p>
+                  <p><a routerLink="/cart" class="buy-now btn btn-sm btn-primary" (click)=addToCart(item)>Add To Cart</a></p>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+
+        </div>
+
+
+        <!--                <div class="row" data-aos="fade-up">
+                          <div class="col-md-12 text-center">
+                            <div class="site-block-27">
+                              <ul>
+                                <li><a href="#">&lt;</a></li>
+                                <li class="active"><span>1</span></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#">&gt;</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>-->
+      </div>
+
+
+      <div class="col-md-3 order-1 mb-5 mb-md-0">
+        <div class="border p-4 rounded mb-4">
+
+          <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
+
+          <ul class="list-unstyled mb-0">
+            <li class="mb-1"><a (click)="filter('')" class="d-flex cursor"><span>All products</span></a>
+              <!--              <span class="text-black ml-auto">(2,220)</span></a>-->
+            </li>
+
+            <li class="mb-1"><a (click)="filter('electronics')" class="d-flex cursor"><span>Electronics</span></a>
+              <!--              <span class="text-black ml-auto">(2,220)</span></a>-->
+            </li>
+            <li class="mb-1"><a (click)="filter('jewelery')" class="d-flex cursor"><span>Jewelery</span></a>
+              <!--              <span class="text-black ml-auto">(2,550)</span></a>-->
+            </li>
+
+            <li class="mb-1"><a (click)="filter('men\'s clothing')"
+                                class="d-flex cursor"><span>Men's clothing</span></a>
+              <!--              <span class="text-black ml-auto">(2,124)</span></a>-->
+            </li>
+
+            <li class="mb-1"><a (click)="filter('women\'s clothing')"
+                                class="d-flex cursor"><span>Women's clothing</span></a>
+              <!--              <span class="text-black ml-auto">(2,124)</span></a>-->
+            </li>
+          </ul>
+        </div>
+
+        <div class="border p-4 rounded mb-4">
+          <!--          <div class="mb-4">
+                      <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
+                      <div id="slider-range" class="border-primary"></div>
+                      <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white"
+                              disabled=""/>
+                    </div>-->
+          <div class="mb-4">
+            <h3 class="mb-3 h6 text-uppercase text-black d-block">Sort</h3>
+
+
+            <label class="d-flex">
+              <a class="dropdown-item cursor" (click)="sortByRelevance()">Relevance</a>
+            </label>
+
+            <label class="d-flex">
+              <a class="dropdown-item cursor" (click)="sortByNameAsc()">Name, A to Z</a>
+            </label>
+
+            <label class="d-flex">
+              <a class="dropdown-item cursor" (click)="sortByNameDesc()">Name, Z to A</a>
+            </label>
+
+            <label class="d-flex">
+              <a class="dropdown-item cursor" (click)="sortByPriceAsc()">Price, low to high</a>
+            </label>
+
+            <label class="d-flex">
+              <a class="dropdown-item cursor" (click)="sortByPriceDesc()">Price, high to low</a>
+
+            </label>
+          </div>
+
+          <!--<div class="mb-4">
+            <h3 class="mb-3 h6 text-uppercase text-black d-block">Color</h3>
+            <a href="#" class="d-flex color-item align-items-center">
+              <span class="bg-danger color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Red (2,429)</span>
+            </a>
+            <a href="#" class="d-flex color-item align-items-center">
+              <span class="bg-success color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Green (2,298)</span>
+            </a>
+            <a href="#" class="d-flex color-item align-items-center">
+              <span class="bg-info color d-inline-block rounded-circle mr-2"></span> <span
+              class="text-black">Blue (1,075)</span>
+            </a>
+            <a href="#" class="d-flex color-item align-items-center">
+              <span class="bg-primary color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Purple (1,075)</span>
+            </a>
+          </div>-->
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
