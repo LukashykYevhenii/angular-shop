@@ -8,18 +8,22 @@ import {AboutComponent} from "./component/about/about.component";
 import {CheckoutComponent} from "./component/checkout/checkout.component";
 import {EndComponent} from "./component/end/end.component";
 import {ContactComponent} from "./component/contact/contact.component";
+import {LoginComponent} from "./component/auth/login/login.component";
+import {UserComponent} from "./component/user/user.component";
+import {AuthGuardService} from "./service/auth-guard.service";
 
 const routes: Routes = [
-  {path: '', redirectTo: 'start', pathMatch: 'full'},
-  {path: 'start', component: StartComponent},
-  {path: 'products', component: ProductsComponent},
-  {path: 'cart', component: CartComponent},
-  {path: 'cart', component: CartComponent},
-  {path: 'single', component: SingleComponent},
-  {path: 'about', component: AboutComponent},
-  {path: 'checkout', component: CheckoutComponent},
-  {path: 'end', component: EndComponent},
-  {path: 'contact', component: ContactComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'start', component: StartComponent, canActivate: [AuthGuardService]},
+  {path: 'products', component: ProductsComponent, canActivate: [AuthGuardService]},
+  {path: 'cart', component: CartComponent, canActivate: [AuthGuardService]},
+  {path: 'single', component: SingleComponent, canActivate: [AuthGuardService]},
+  {path: 'about', component: AboutComponent, canActivate: [AuthGuardService]},
+  {path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuardService]},
+  {path: 'end', component: EndComponent, canActivate: [AuthGuardService]},
+  {path: 'contact', component: ContactComponent, canActivate: [AuthGuardService]},
+  {path: 'user', component: UserComponent, canActivate: [AuthGuardService]},
+  {path: '', redirectTo: 'start', pathMatch: 'full'}
 ];
 
 @NgModule({

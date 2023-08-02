@@ -122,12 +122,16 @@
             <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
               <div class="block-4 text-center border">
                 <figure class="block-4-image">
-                  <a routerLink="/single" [queryParams]="{id: item.id}"><img src="{{item.image}}"
-                                                                             alt="Image placeholder" class="img-fluid"></a>
+                  <a routerLink="/single" [queryParams]="{id: item.idProduct}">
+<!--                    <img src="{{item.image}}" alt="Image placeholder" class="img-fluid">-->
+
+                    <img class="img-fluid" [src]=formatImage(item.image) alt="image" >
+
+                  </a>
                 </figure>
                 <div class="block-4-text p-4">
                   <h3 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;"><a
-                    routerLink="/single" [queryParams]="{id: item.id}">{{item.title}}</a></h3>
+                    routerLink="/single" [queryParams]="{id: item.idProduct}">{{item.title}}</a></h3>
                   <p class="mb-0"
                      style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">{{item.description}}</p>
                   <p class="text-primary font-weight-bold">${{item.price}}</p>

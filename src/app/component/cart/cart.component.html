@@ -85,7 +85,7 @@
               <tbody>
               <tr *ngFor="let item of products; let i = index">
                 <td class="product-thumbnail">
-                  <img src="{{item.image}}" alt="Image" class="img-fluid">
+                  <img [src]=formatImage(item.image) alt="Image" class="img-fluid">
                 </td>
                 <td class="product-name">
                   <h2 class="h5 text-black">{{item.title}}</h2>

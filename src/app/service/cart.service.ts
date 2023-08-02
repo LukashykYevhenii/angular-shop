@@ -44,7 +44,7 @@ export class CartService {
 
   removeCartItem(product: any) {
     this.cartItemList.map((a: any, index: any) => {
-      if (product.id === a.id) {
+      if (product.idProduct === a.idProduct) {
         this.cartItemList.splice(index, 1);
       }
     })

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from 'src/app/service/api.service';
 import {CartService} from 'src/app/service/cart.service';
+import {ProductService} from "../../service/product.service";
+import {ImageService} from "../../service/image.service";
 
 @Component({
   selector: 'app-products',
@@ -13,19 +15,23 @@ export class ProductsComponent implements OnInit {
   public filterCategory: any;
   public searchKey: string = "";
 
-  public minPrice: number = 0;
-  public maxPrice: number = 0;
-
-  constructor(private api: ApiService, private cartService: CartService) {
+  constructor(private api: ApiService,
+              private cartService: CartService,
+              private productService: ProductService,
+              private imageService: ImageService) {
   }
 
   ngOnInit(): void {
-    this.api.getProduct()
+    this.productService.getAllProducts()
       .subscribe(res => {
         this.productList = res;
         this.filterCategory = res;
         this.productList.forEach((a: any) => {
           Object.assign(a, {quantity: 1, total: a.price});
+
+          //виклик методу що завантажує картинки для
+          //кожного продукту
+          this.getImagesToProducts(this.productList);
         });
         console.log(this.productList)
       });
@@ -78,6 +84,13 @@ export class ProductsComponent implements OnInit {
     });
   }
 
+  formatImage(img: any): any {
+    if (img == null) {
+      return null;
+    }
+    return 'data:image/jpeg;base64,' + img;
+  }
+
   // calculatePriceRange(): void {
   //   const prices = this.productList.map((item: any) => item.price);
   //   this.minPrice = Math.min(...prices);
@@ -92,4 +105,16 @@ export class ProductsComponent implements OnInit {
   //     return item.price >= minPrice && item.price <= maxPrice;
   //   });
   // }
+
+
+  //отримаємо зображення для кожного продукту на сторінці по id
+  private getImagesToProducts(productList: any[]) {
+    productList.forEach(p => {
+      this.imageService.getImageToProduct(p.idProduct)
+        // @ts-ignore
+        .subscribe(data => {
+          p.image = data.imageBytes;
+        })
+    });
+  }
 }

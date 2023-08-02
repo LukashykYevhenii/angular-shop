@@ -1,0 +1,23 @@
+<div>
+
+
+  <div *ngIf="isUserDataLoaded">
+    <h1>Profile</h1>
+
+    <div>
+      <button>Edit info</button>
+    </div>
+
+    <img class="profile-image" [src]="previewImgURL||formatImage(userProfileImage)" alt="user image">
+
+    <input type="file" #fileInput (change)="onFileSelected($event)">
+    <button (click)="fileInput.click()">Pick File</button>
+    <button *ngIf="selectedFile" (click)="onUpload()">Upload</button>
+
+
+    <h2>Username:{{user.username}}</h2>
+
+  </div>
+
+
+</div>
