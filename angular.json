@@ -101,5 +101,7 @@
       }
     }
   },
-  "defaultProject": "angular-shop"
+  "cli": {
+    "analytics": "994228a1-911b-4d67-a9ba-f2e75b0ff0ab"
+  }
 }
