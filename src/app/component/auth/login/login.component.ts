@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../service/auth.service";
 import {Router} from "@angular/router";
 import {TokenStorageService} from "../../../service/token-storage.service";
@@ -13,10 +13,10 @@ import {NotificationService} from "../../../service/notification.service";
 
 export class LoginComponent implements OnInit {
 
-  loginForm!: FormGroup;
+  loginForm!: UntypedFormGroup;
 
   constructor(private authService: AuthService,
-              private fb: FormBuilder,
+              private fb: UntypedFormBuilder,
               private router: Router,
               private tokenStorageService: TokenStorageService,
               private notificationService: NotificationService) {
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-  private createLoginForm(): FormGroup {
+  private createLoginForm(): UntypedFormGroup {
     return this.fb.group({
       username: ['', Validators.compose([Validators.required])],
       password: ['', Validators.compose([Validators.required])]
