@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../service/auth.service";
 import {Router} from "@angular/router";
 import {TokenStorageService} from "../../../service/token-storage.service";
@@ -19,12 +19,17 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private tokenStorageService: TokenStorageService) {
 
-    if(this.tokenStorageService.getUser()){
+    if (this.tokenStorageService.getUser()) {
       this.router.navigate(["/products"]);
     }
   }
+
   ngOnInit(): void {
     this.loginForm = this.createLoginForm();
+  }
+
+  get f(): { [key: string]: AbstractControl } {
+    return this.loginForm.controls;
   }
 
   private createLoginForm(): FormGroup {
