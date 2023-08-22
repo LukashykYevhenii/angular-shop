@@ -3,6 +3,7 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/form
 import {AuthService} from "../../../service/auth.service";
 import {Router} from "@angular/router";
 import {TokenStorageService} from "../../../service/token-storage.service";
+import {NotificationService} from "../../../service/notification.service";
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService,
               private fb: FormBuilder,
               private router: Router,
-              private tokenStorageService: TokenStorageService) {
+              private tokenStorageService: TokenStorageService,
+              private notificationService: NotificationService) {
 
     if (this.tokenStorageService.getUser()) {
       this.router.navigate(["/products"]);
@@ -73,6 +75,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         console.log("Error login = :", error);
+        this.notificationService.showSnackBar(error.message)
       }
     );
   }
