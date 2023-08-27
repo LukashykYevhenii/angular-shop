@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+
+.label-invalid {
+  @apply text-red-700 dark:text-red-500
+}
+
+.label-valid {
+  @apply text-green-700 dark:text-green-500
+}
+
+.input-invalid {
+  @apply border-red-500 text-red-900 placeholder-red-700 focus:ring-red-500 focus:border-red-500
+}
+
+.input-valid {
+  @apply border-green-500 text-green-900 placeholder-green-700 focus:ring-green-500 focus:border-green-500
+}

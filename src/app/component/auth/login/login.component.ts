@@ -15,6 +15,9 @@ export class LoginComponent implements OnInit {
 
   loginForm!: UntypedFormGroup;
 
+  submitted = false;
+
+
   constructor(private authService: AuthService,
               private fb: UntypedFormBuilder,
               private router: Router,
@@ -36,7 +39,7 @@ export class LoginComponent implements OnInit {
 
   private createLoginForm(): UntypedFormGroup {
     return this.fb.group({
-      username: ['', Validators.compose([Validators.required])],
+      username: ['', Validators.compose([Validators.required, Validators.min(3)])],
       password: ['', Validators.compose([Validators.required])]
     });
   }
@@ -60,6 +63,7 @@ export class LoginComponent implements OnInit {
   // }
 
   submit(): void {
+    this.submitted = false;
     this.authService.login({
       username: this.loginForm.value.username,
       password: this.loginForm.value.password
@@ -70,11 +74,13 @@ export class LoginComponent implements OnInit {
         console.log("token: " + data.token);
         this.tokenStorageService.saveToken(data.token);
         this.tokenStorageService.saveUser(data);
+        this.notificationService.showSnackBar('Successfully logged in');
         this.router.navigate(['/']);
         window.location.reload();
       },
       error => {
         console.log("Error login = :", error);
+        console.log("login form errors = ", this.loginForm.errors);
         this.notificationService.showSnackBar(error.message)
       }
     );

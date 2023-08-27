@@ -83,32 +83,32 @@
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let item of products; let i = index">
+              <tr *ngFor="let product of products; let i = index">
                 <td class="product-thumbnail">
-                  <img [src]=formatImage(item.image) alt="Image" class="img-fluid">
+                  <img [src]=formatImage(product.image) alt="Image" class="img-fluid">
                 </td>
                 <td class="product-name">
-                  <h2 class="h5 text-black">{{item.title}}</h2>
+                  <h2 class="h5 text-black">{{product.title}}</h2>
                 </td>
-                <td>${{item.price}}</td>
+                <td>${{product.price}}</td>
                 <td>
                   <div class="input-group mb-3" style="max-width: 120px;">
                     <div class="input-group-prepend">
                       <button class="btn btn-outline-primary js-btn-minus" type="button"
-                              (click)="decreaseQuantity(item)">&minus;
+                              (click)="decreaseQuantity(product)">&minus;
                       </button>
                     </div>
-                    <input type="text" class="form-control text-center" [value]="item.quantity" placeholder=""
+                    <input type="text" class="form-control text-center" [value]="product.quantity" placeholder=""
                            aria-label="Example text with button addon" aria-describedby="button-addon1">
                     <div class="input-group-append">
                       <button class="btn btn-outline-primary js-btn-plus" type="button"
-                              (click)="increaseQuantity(item)">&plus;
+                              (click)="increaseQuantity(product)">&plus;
                       </button>
                     </div>
                   </div>
                 </td>
-                <td>${{item.total}}</td>
-                <td><a (click)="removeItem(item)" class="btn btn-primary btn-sm">X</a></td>
+                <td>${{product.total}}</td>
+                <td><a (click)="removeItem(product)" class="btn btn-primary btn-sm">X</a></td>
               </tr>
               <!-- <tr>
                  <td class="product-thumbnail">

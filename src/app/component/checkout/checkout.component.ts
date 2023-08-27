@@ -14,7 +14,11 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cartItems = this.cartService.getCartItems();
+    //this.cartItems = this.cartService.getCartItems();
+     this.cartService.getCartDetails().subscribe(items=>{
+         // @ts-ignore
+         this.cartItems = items;
+    });
     this.grandTotal = this.cartService.getTotalPrice();
   }
 

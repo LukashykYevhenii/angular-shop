@@ -43,6 +43,10 @@ export class ProductsComponent implements OnInit {
 
   addToCart(item: any) {
     this.cartService.addtoCart(item);
+    this.cartService.addToCartServer(item).subscribe(
+      (response) => {console.log(response)},
+      (error) =>{console.log(error)}
+    );
   }
 
   filter(category: string) {

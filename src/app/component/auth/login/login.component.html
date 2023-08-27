@@ -18,23 +18,25 @@
               </p>
             </div>
           </div>
-
-
           <form [formGroup]="loginForm" class="signin-form" (ngSubmit)="submit()">
 
-            <div class="form-group mb-3" >
+            <div class="form-group mb-3">
+
               <label class="label" for="name">Username</label>
-              <input id="name" type="text" class="form-control" placeholder="Username" formControlName="username"
+              <input id="name" type="text" class="form-control" placeholder="Username"
+                     formControlName="username"
                      required>
             </div>
 
             <div class="form-group mb-3">
-              <label class="label" for="password">Password</label>
-              <input id="password" type="password" class="form-control" formControlName="password"
-                     placeholder="Password" required>
             </div>
 
-            <p *ngIf="loginForm.errors"  class="mt-2 text-sm text-red-600">
+            <label class="label" for="password">Password</label>
+            <input id="password" type="password" class="form-control" formControlName="password"
+                   placeholder="Password" required>
+
+
+            <p *ngIf="loginForm.errors" class="error">
               {{loginForm.errors}}
             </p>
 

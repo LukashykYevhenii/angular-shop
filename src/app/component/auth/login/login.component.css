@@ -31,3 +31,9 @@
 .img,.login-wrap {
   width: 50%;
 }
+.error {
+  padding: 16px;
+  width: 300px;
+  color: white;
+  background-color: red;
+}
